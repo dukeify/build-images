@@ -15,7 +15,7 @@ cd docker/$TARGET_GROUP
 for image in $(ls); do
  suffix="$(echo "$image" | cut -d. -f1)"
  tag="dukeify/build-images:$suffix"
- printf 'Building "%s" as and tagging as "%s"\n' "$image" "$tag"
+ printf 'Building "%s" and tagging as "%s"\n' "$image" "$tag"
  docker build -t "$tag" -f "$image" .
 done
 
