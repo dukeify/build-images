@@ -7,10 +7,10 @@ sources:
 tasks:
  - configure-host: |
     cd build-images
-    sudo ./scripts/setup-host.sh linux
+    ./scripts/setup-host.sh linux
  - build-images: |
     cd build-images
-    sudo ./scripts/build-images.sh linux
+    ./scripts/build-images.sh linux
  - publish-images: |
     cd build-images
-    sudo ./scripts/publish-images.sh linux
+    ./scripts/publish-images.sh linux

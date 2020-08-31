@@ -13,7 +13,7 @@ for image in $(ls); do
  image="$(echo "$image" | cut -d. -f1)"
  to_publish="dukeify/build-images:$image"
  printf 'Publishing: %s\n' "$to_publish"
- docker push "$to_publish"
+ sudo docker push "$to_publish"
 done
 
 #Return to previous CWD
