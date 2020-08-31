@@ -1,7 +1,7 @@
 image: archlinux
 arch: x86_64 
 secrets:
- - a0395b1d-ae64-4fb0-8e54-4e044948f0d0 
+ - d1b12247-69b7-401c-b2ca-4481f954b5f7 
 sources:
  - https://github.com/dukeify/build-images
 tasks:

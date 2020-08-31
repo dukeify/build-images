@@ -10,6 +10,7 @@ fi
 #Start docker and login if it isn't running
 if [[ ! -n "$(ps -a | grep -i docker | awk '{ print $4 }')" ]]; then
  sudo dockerd 2>&1 > /dev/null &
+ sudo ~/login_to_dockerhub.sh
 fi
 
 #Tag all images and publish to dockerhub
