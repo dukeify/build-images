@@ -11,7 +11,7 @@ sources:
 tasks:
  - configure-host: |
     cd build-images
-    ./scripts/setup-host.sh
+    ./scripts/setup-host.sh linux
  - build-images: |
     cd build-images
     ./scripts/build-images.sh linux
