@@ -16,7 +16,7 @@ sudo systemctl enable systemd-binfmt
 sudo systemctl start systemd-binfmt
 
 #Start docker and confirm that it is functioning
-source common/start_docker.sh
+source ~/build-images/scripts/common/start_docker.sh
 
 #Return to previous CWD
 cd "$PREVIOUS_CWD"

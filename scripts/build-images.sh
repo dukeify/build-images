@@ -8,7 +8,7 @@ if [[ ! -n "$TARGET_GROUP" ]]; then
 fi
 
 #Start docker and login if it isn't running
-source common/start_docker.sh
+source ~/build-images/scripts/common/start_docker.sh
 
 #Build all images in group
 cd docker/$TARGET_GROUP
