@@ -1,0 +1,20 @@
+image: debian/sid
+arch: amd64
+secrets:
+ - 46f739e5-4538-45dd-a79f-bf173b7a2ed9
+packages:
+ - qemu-user-static
+ - binfmt-support
+ - docker
+sources:
+ - https://github.com/dukeify/build-images
+tasks:
+ - configure-host: |
+    cd build-images
+    ./scripts/setup-host.sh
+ - build-images: |
+    cd build-images
+    ./scripts/build-images.sh linux
+ - publish-images: |
+    cd build-images
+    ./scripts/publish-images.sh linux
