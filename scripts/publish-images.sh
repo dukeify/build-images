@@ -29,7 +29,7 @@ done
 TO_EXPORT="$(echo "$TO_EXPORT" | awk '{$1=$1};1')"
 cd /home/build/build-images
 printf 'Exporting images: %s\n' "$TO_EXPORT"
-docker save -o dukeify-all.tar "$TO_EXPORT"
+docker save -o dukeify-all.tar $TO_EXPORT
 pigz --fast dukeify-all.tar
 
 #Return to previous CWD
