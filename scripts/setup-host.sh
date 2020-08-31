@@ -7,20 +7,15 @@ if [[ ! -n "$TARGET_GROUP" ]]; then
  exit -1
 fi
 
-#Install docker
-yay -Sy --noconfirm --sudoloop docker
+#Install dependencies 
+yay -Sy --noconfirm --sudoloop qemu-user-static-bin docker
+yay -Sy --noconfirm --sudoloop binfmt-qemu-static
+
+#Configure binfmt and start docker
+sudo systemctl start systemd-binfmt
 sudo dockerd 2>&1 > /dev/null &
 
-#Enable desired architectures
-#TODO other groups will require special logic
-#cd docker/$TARGET_GROUP
-#for image in $(ls); do
-# target_arch=$(echo "$image" | cut -d- -f1)
-# update-binfmts --enable "qemu-$target_arch"
-#done
-
-#Start and login to docker
-#systemctl start docker
+#Login to docker
 sudo ~/login_to_dockerhub.sh
 
 #Return to previous CWD
