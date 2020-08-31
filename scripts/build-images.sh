@@ -7,6 +7,11 @@ if [[ ! -n "$TARGET_GROUP" ]]; then
  exit -1
 fi
 
+#Start docker and login if it isn't running
+if [[ ! -n "$(ps -a | grep -i docker | awk '{ print $4 }')" ]]; then
+ dockerd 2>&1 > /dev/null &
+fi
+
 #Build all images in group
 cd docker/$TARGET_GROUP
 for image in $(ls); do

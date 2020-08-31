@@ -12,6 +12,7 @@ yay -Sy --noconfirm --sudoloop qemu-user-static-bin docker
 yay -Sy --noconfirm --sudoloop binfmt-qemu-static
 
 #Configure binfmt and start docker
+sudo systemctl enable systemd-binfmt
 sudo systemctl start systemd-binfmt
 sudo dockerd 2>&1 > /dev/null &
 
