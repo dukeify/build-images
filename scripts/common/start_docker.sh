@@ -4,7 +4,7 @@
 export LOGGED_IN_TO_DOCKERHUB=1
 
 function is_docker_running() {
- if [ -n "$(ps -a | grep -i docker | awk '{ print $4 }')" ]; then
+ if [ -n "$(ps -a | grep -i docker | awk '{ print $4 }')" || -f "/var/run/docker.pid" ]; then
   echo 0
  else
   echo 1
