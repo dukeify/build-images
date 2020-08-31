@@ -8,10 +8,7 @@ if [[ ! -n "$TARGET_GROUP" ]]; then
 fi
 
 #Start docker and login if it isn't running
-if [[ ! -n "$(ps -a | grep -i docker | awk '{ print $4 }')" ]]; then
- sudo dockerd 2>&1 > /dev/null &
- sudo ~/login_to_dockerhub.sh
-fi
+source common/start_docker.sh
 
 #Build all images in group
 cd docker/$TARGET_GROUP

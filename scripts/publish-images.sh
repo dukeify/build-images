@@ -8,19 +8,26 @@ if [[ ! -n "$TARGET_GROUP" ]]; then
 fi
 
 #Start docker and login if it isn't running
-if [[ ! -n "$(ps -a | grep -i docker | awk '{ print $4 }')" ]]; then
- sudo dockerd 2>&1 > /dev/null &
- sudo ~/login_to_dockerhub.sh
-fi
+source common/start_docker.sh
 
-#Tag all images and publish to dockerhub
+#Publish to dockerhub and collect images to export
+TO_EXPORT=""
 cd docker/$TARGET_GROUP
 for image in $(ls); do
  image="$(echo "$image" | cut -d. -f1)"
- to_publish="dukeify/build-images:$image"
- printf 'Publishing: %s\n' "$to_publish"
- sudo docker push "$to_publish"
-done
+ tagged_image="dukeify/build-images:$image"
+ TO_EXPORT="$tagged_image $TO_EXPORT"
+ #Publish if logged into dockerhub 
+ if [ "$LOGGED_INTO_DOCKERHUB" == 0 ]; then
+  printf 'Publishing: %s\n' "$tagged_image"
+  sudo docker push "$tagged_image"
+ fi
+done 
+
+#Export all images and compress
+cd /home/build/build-images
+sudo docker save "$TO_EXPORT" -o dukeify-all.tar
+pigz --fast dukeify-all.tar
 
 #Return to previous CWD
 cd "$PREVIOUS_CWD"
