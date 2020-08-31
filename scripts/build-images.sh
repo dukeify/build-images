@@ -16,7 +16,7 @@ for image in $(ls); do
  suffix="$(echo "$image" | cut -d. -f1)"
  tag="dukeify/build-images:$suffix"
  printf 'Building "%s" as and tagging as "%s"\n' "$image" "$tag"
- sudo docker build -t "$tag" -f "$image" .
+ docker build -t "$tag" -f "$image" .
 done
 
 #Return to previous CWD 

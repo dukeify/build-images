@@ -18,15 +18,18 @@ for image in $(ls); do
  tagged_image="dukeify/build-images:$image"
  TO_EXPORT="$tagged_image $TO_EXPORT"
  #Publish if logged into dockerhub 
- if [ "$LOGGED_INTO_DOCKERHUB" == 0 ]; then
+ if [ "$(is_logged_in)" == 0 ]; then
   printf 'Publishing: %s\n' "$tagged_image"
-  sudo docker push "$tagged_image"
+  docker push "$tagged_image"
  fi
 done 
 
 #Export all images and compress
+#Trim excess whitespace
+TO_EXPORT="$(echo "$TO_EXPORT" | awk '{$1=$1};1')"
 cd /home/build/build-images
-sudo docker save "$TO_EXPORT" -o dukeify-all.tar
+printf 'Exporting images: %s\n' "$TO_EXPORT"
+docker save -o dukeify-all.tar "$TO_EXPORT"
 pigz --fast dukeify-all.tar
 
 #Return to previous CWD

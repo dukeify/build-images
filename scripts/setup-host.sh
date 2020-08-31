@@ -15,8 +15,9 @@ yay -Sy --noconfirm --sudoloop binfmt-qemu-static
 sudo systemctl enable systemd-binfmt
 sudo systemctl start systemd-binfmt
 
-#Start docker and confirm that it is functioning
-source ~/build-images/scripts/common/start_docker.sh
+#Add 'build' user to 'docker' so it can use docker 
+#source ~/build-images/scripts/common/start_docker.sh
+sudo usermod -aG docker build 
 
 #Return to previous CWD
 cd "$PREVIOUS_CWD"
