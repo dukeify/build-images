@@ -1,7 +1,7 @@
 image: debian/sid
 arch: amd64
 secrets:
- - 46f739e5-4538-45dd-a79f-bf173b7a2ed9
+ - f3014064-c3a4-4b9a-8d4a-6ec9ec564e78 
 packages:
  - qemu-user-static
  - binfmt-support
