@@ -4,8 +4,8 @@ secrets:
  - d1b12247-69b7-401c-b2ca-4481f954b5f7 
 sources:
  - https://github.com/dukeify/build-images
-artifacts:
- - build-images/dukeify-all.tar.gz
+#artifacts:
+# - build-images/dukeify-all.tar.gz
 tasks:
  - configure-host: |
     cd build-images
