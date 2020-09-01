@@ -21,6 +21,8 @@ for image in $(ls); do
  if [ "$(is_logged_in)" == 0 ]; then
   printf 'Publishing: %s\n' "$tagged_image"
   docker push "$tagged_image"
+ else
+  printf 'Not logged into Dockerhub, not publishing images\n'
  fi
 done 
 
