@@ -6,6 +6,7 @@ RUN apt install -y debootstrap
 RUN dpkg --add-architecture arm64
 
 #Create aarch64 root
+#This image supports ARMv8
 WORKDIR /image
 RUN debootstrap --arch=arm64 --variant=minbase sid .
 
